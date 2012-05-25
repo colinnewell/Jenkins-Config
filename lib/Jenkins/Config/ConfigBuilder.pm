@@ -1,4 +1,4 @@
-package Jenkins::API::ConfigBuilder;
+package Jenkins::Config::ConfigBuilder;
 
 =head1 NAME
 
