@@ -1,8 +1,8 @@
 use Test::Most;
 
-use Jenkins::Config::ConfigBuilder;
+use Jenkins::Config;
 
-my $cb = Jenkins::Config::ConfigBuilder->new();
+my $cb = Jenkins::Config->new();
 my $xml = $cb->to_xml(
         { 
           actions => {},
