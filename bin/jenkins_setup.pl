@@ -4,8 +4,11 @@ use Modern::Perl;
 
 use Jenkins::Config;
 use CodeHacks::META;
+use Jenkins::API;
 
 # FIXME: add command line parsing or something.
+my $url = shift;
+die 'Must specify jenkins url' unless $url;
 my $meta = shift;
 die 'Must specify META.yml' unless $meta;
 
@@ -36,5 +39,10 @@ if($deps)
 # FIXME: add dependencies.
 
 my $xml = $cb->to_xml($hash);
-print $xml;
+
+my $jenkins = Jenkins::API->new({ base_url => $url });
+die 'Jenkins not running on ' . $url unless $jenkins->check_jenkins_url;
+$jenkins->create_job($module->name, $xml) || die 'Unable to create project';
+print "Project created\n";
+#print $xml;
 
