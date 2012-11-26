@@ -9,8 +9,18 @@ build_requires 'Test::More';
 install_script 'bin/jenkins_setup.pl';
 install_share 'lib/auto';
 
+requires 'Jenkins::API';
+requires 'CodeHacks';
+
 install_as_cpan;
 auto_install;
+resources (
+    repository => {
+        url => 'ssh://bfwg.dyndns-at-home.com/~/git/Jenkins-Config',
+        type => 'git',
+    },
+);
+
 
 WriteAll;
 

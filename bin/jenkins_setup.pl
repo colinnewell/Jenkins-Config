@@ -2,7 +2,7 @@
 
 use Modern::Perl;
 
-use Jenkins::Config::ConfigBuilder;
+use Jenkins::Config;
 use CodeHacks::META;
 
 # FIXME: add command line parsing or something.
@@ -12,7 +12,7 @@ die 'Must specify META.yml' unless $meta;
 my $module = CodeHacks::META->new({ file_name => $meta });
 my $deps = $module->local_deps;
 
-my $cb = Jenkins::Config::ConfigBuilder->new();
+my $cb = Jenkins::Config->new();
 my $hash = $cb->default_project;
 $hash->{description} = $module->abstract;
 # FIXME: add svn support
