@@ -10,6 +10,7 @@ my $meta = shift;
 die 'Must specify META.yml' unless $meta;
 
 my $module = CodeHacks::META->new({ file_name => $meta });
+die 'Must have source repo specified in META.yml' unless $module->repo_url;
 my $deps = $module->local_deps;
 
 my $cb = Jenkins::Config->new();
