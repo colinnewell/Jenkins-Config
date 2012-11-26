@@ -6,7 +6,10 @@ author   q{Colin Newell <colin.newell@gmail.com>};
 license  'perl';
 
 build_requires 'Test::More';
+install_script 'bin/jenkins_setup.pl';
+install_share 'lib/auto';
 
+install_as_cpan;
 auto_install;
 
 WriteAll;

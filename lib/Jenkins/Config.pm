@@ -1,5 +1,7 @@
 package Jenkins::Config;
 
+our $VERSION = '0.01';
+
 =head1 NAME
 
 Jenkins::Config - Jenkins Project Configuration
