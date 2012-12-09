@@ -7,6 +7,9 @@ use CodeHacks::META;
 use Jenkins::API;
 
 # FIXME: add command line parsing or something.
+# allow config xml to be produced without pushing to 
+# url
+# also allow just commands to be displayed.
 my $url = shift;
 die 'Must specify jenkins url' unless $url;
 my $meta = shift;
@@ -31,9 +34,11 @@ if($deps)
     my $lib = join ':', map { "../$_/lib" } @$deps;
     $cpan_line = sprintf "PERL5LIB=%s %s", $lib, $cpan_line;
     $shell_commands->[1]->{command} = $cpan_line;
+    print "$cpan_line\n";
     my $prove_line = $shell_commands->[2]->{command};
     my $deps = join ' ', map { "-I ../$_/lib" } @$deps;
     $prove_line =~ s|(/opt/perl5/bin/prove)|$1 $deps|;
+    print "$prove_line\n";
     $shell_commands->[2]->{command} = $prove_line;
 }
 # FIXME: add dependencies.
