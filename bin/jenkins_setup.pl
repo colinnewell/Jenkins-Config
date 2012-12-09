@@ -28,7 +28,7 @@ if($module->repo_type eq 'git')
     $hash->{scm}->{userRemoteConfigs}->{'hudson.plugins.git.UserRemoteConfig'}->{url} = $module->repo_url;
 }
 my $shell_commands = $hash->{builders}->{'hudson.tasks.Shell'};
-if($deps)
+if(@$deps)
 {
     my $cpan_line = $shell_commands->[1]->{command};
     my $lib = join ':', map { "../$_/lib" } @$deps;
