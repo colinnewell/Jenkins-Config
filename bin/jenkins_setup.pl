@@ -47,7 +47,10 @@ my $xml = $cb->to_xml($hash);
 
 my $jenkins = Jenkins::API->new({ base_url => $url });
 die 'Jenkins not running on ' . $url unless $jenkins->check_jenkins_url;
-$jenkins->create_job($module->name, $xml) || die 'Unable to create project';
+unless($jenkins->create_job($module->name, $xml))
+{
+    $jenkins->set_project_config($module->name, $xml) || die 'Unable to set config';
+}
 print "Project created\n";
 #print $xml;
 
