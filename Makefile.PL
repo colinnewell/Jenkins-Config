@@ -7,6 +7,7 @@ license  'perl';
 
 build_requires 'Test::More';
 install_script 'bin/jenkins_setup.pl';
+install_script 'bin/test_with_deps.pl';
 install_share 'lib/auto';
 
 requires 'Jenkins::API';
