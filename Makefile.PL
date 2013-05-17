@@ -9,7 +9,6 @@ build_requires 'Test::More';
 install_share 'lib/auto';
 
 requires 'Jenkins::API';
-requires 'CodeHacks';
 requires 'XML::Compile';
 
 install_as_cpan;
