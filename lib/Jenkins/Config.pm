@@ -203,7 +203,7 @@ sub default_project
           { 
             'hudson.triggers.SCMTrigger' =>
             { 
-              spec => "*/5 * * * *", },
+              spec => "H/5 * * * *", },
             class => "vector", },
           concurrentBuild => "false",
           builders =>
