@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="project">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="actions"/>
+        <xs:element ref="description"/>
+        <xs:element ref="keepDependencies"/>
+        <xs:element ref="properties"/>
+        <xs:element ref="scm"/>
+        <xs:element ref="canRoam"/>
+        <xs:element ref="disabled"/>
+        <xs:element ref="blockBuildWhenDownstreamBuilding"/>
+        <xs:element ref="blockBuildWhenUpstreamBuilding"/>
+        <xs:element ref="triggers"/>
+        <xs:element ref="concurrentBuild"/>
+        <xs:element ref="builders"/>
+        <xs:element ref="publishers"/>
+        <xs:element ref="buildWrappers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actions">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="description">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="keepDependencies" type="xs:boolean"/>
+  <xs:element name="properties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com.coravy.hudson.plugins.github.GithubProjectProperty"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="com.coravy.hudson.plugins.github.GithubProjectProperty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="projectUrl"/>
+        <xs:element ref="displayName"/>
+      </xs:sequence>
+      <xs:attribute name="plugin" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="projectUrl" type="xs:anyURI"/>
+  <xs:element name="displayName">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="scm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="configVersion"/>
+        <xs:element ref="userRemoteConfigs"/>
+        <xs:element ref="branches"/>
+        <xs:element ref="doGenerateSubmoduleConfigurations"/>
+        <xs:element ref="submoduleCfg"/>
+        <xs:element ref="extensions"/>
+      </xs:sequence>
+      <xs:attribute name="class" use="required" type="xs:NCName"/>
+      <xs:attribute name="plugin" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="configVersion" type="xs:integer"/>
+  <xs:element name="userRemoteConfigs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hudson.plugins.git.UserRemoteConfig"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hudson.plugins.git.UserRemoteConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="url"/>
+        <xs:element ref="credentialsId"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="url" type="xs:anyURI"/>
+  <xs:element name="credentialsId" type="xs:NCName"/>
+  <xs:element name="branches">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hudson.plugins.git.BranchSpec"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hudson.plugins.git.BranchSpec">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="doGenerateSubmoduleConfigurations" type="xs:boolean"/>
+  <xs:element name="submoduleCfg">
+    <xs:complexType>
+      <xs:attribute name="class" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="extensions">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="canRoam" type="xs:boolean"/>
+  <xs:element name="disabled" type="xs:boolean"/>
+  <xs:element name="blockBuildWhenDownstreamBuilding" type="xs:boolean"/>
+  <xs:element name="blockBuildWhenUpstreamBuilding" type="xs:boolean"/>
+  <xs:element name="triggers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="com.cloudbees.jenkins.GitHubPushTrigger"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="com.cloudbees.jenkins.GitHubPushTrigger">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="spec"/>
+      </xs:sequence>
+      <xs:attribute name="plugin" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spec">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="concurrentBuild" type="xs:boolean"/>
+  <xs:element name="builders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hudson.tasks.Shell"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hudson.tasks.Shell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="command"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="command" type="xs:string"/>
+  <xs:element name="publishers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hudson.tasks.junit.JUnitResultArchiver"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hudson.tasks.junit.JUnitResultArchiver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="testResults"/>
+        <xs:element ref="keepLongStdio"/>
+        <xs:element ref="healthScaleFactor"/>
+        <xs:element ref="allowEmptyResults"/>
+      </xs:sequence>
+      <xs:attribute name="plugin" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="testResults" type="xs:string"/>
+  <xs:element name="keepLongStdio" type="xs:boolean"/>
+  <xs:element name="healthScaleFactor" type="xs:decimal"/>
+  <xs:element name="allowEmptyResults" type="xs:boolean"/>
+  <xs:element name="buildWrappers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="hudson.plugins.timestamper.TimestamperBuildWrapper"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hudson.plugins.timestamper.TimestamperBuildWrapper">
+    <xs:complexType>
+      <xs:attribute name="plugin" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
